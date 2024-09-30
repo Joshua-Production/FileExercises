@@ -19,7 +19,7 @@ namespace FileExercises
                 {
                     // this make the new path
                     StreamWriter writer = new StreamWriter(path);
-                    // what i want it to write 
+                    // what it writes
                     writer.WriteLine("Hello");
                     writer.WriteLine("And");
                     writer.WriteLine("Welcome!");

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography.X509Certificates;
+using System.Drawing;
+using System.Text.Json;
 
 /*
  * Write a Serialize and DeSerialize function for Contact struct.
@@ -13,12 +16,13 @@ using System.Threading.Tasks;
 
 namespace FileExercises
 {
-    
+
     struct Contact
     {
         public string name;
         public string email;
         public int id;
+
         public Contact(string name, string email, int id)
         {
             this.name = name;
@@ -26,24 +30,77 @@ namespace FileExercises
             this.id = id;
 
         }
-        public void Print()
+
+        public void Serialize(string path)
         {
-            Console.WriteLine(name = " | " + email + " | " + id);
+            try
+            {
+                // this make the new path
+                StreamWriter writer = new StreamWriter(path);
+                // what it writes
+                writer.WriteLine(name + "  ");
+                writer.WriteLine(email + "  ");
+                writer.WriteLine(id + " ");
+                writer.Close();
+                // Dispose of the object
+                try
+                {
+                    writer.Dispose();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+        public void DeSerialize(string path)
+        {
+            try
+            {
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    string str;
+                    while ((str = reader.ReadLine()) != null)
+                    {
+                        Console.WriteLine(str);
+                        
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+        }
+
+        public void Print()
+
+        { 
+            Console.WriteLine(name + " " + email + "  " + id);
         }
     }
     internal class SerializeIO
     {
         public void Run()
         {
+
+
             // Make 3 contacts 
             Contact bob = new Contact("Bob", "bob@email.com", 1234);
             Contact fred = new Contact("Fred", "fred@email.com", 2345);
             Contact jane = new Contact("Jane", "Jane@email.com", 3456);
 
             // Write each contact to a file
-            bob.Serialize(@"contacts\bob.txt");
-            fred.Serialize(@"contacts\fred.txt");
-            jane.Serialize(@"contacts\jane.txt");
+
+            bob.Serialize(@"bob.txt");
+            fred.Serialize(@"fred.txt");
+            jane.Serialize(@"jane.txt");
 
             // Clear out contacts
             bob = new Contact();
@@ -51,18 +108,20 @@ namespace FileExercises
             jane = new Contact();
 
             // Load contacts from file
-            bob.DeSerialize(@"contacts\bob.txt");
-            fred.DeSerialize(@"contacts\fred.txt");
-            jane.DeSerialize(@"contacts\jane.txt");
+            bob.DeSerialize(@"bob.txt");
+            fred.DeSerialize(@"fred.txt");
+            jane.DeSerialize(@"jane.txt");
 
             // Print contacts
             bob.Print();
             fred.Print();
             jane.Print();
+
+
         }
 
 
 
-        
+
     }
 }
