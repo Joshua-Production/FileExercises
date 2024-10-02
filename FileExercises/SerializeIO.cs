@@ -17,7 +17,7 @@ using System.Text.Json;
 namespace FileExercises
 {
     
-
+    // making the struct
     struct Contact
     {
         public string name;
@@ -32,7 +32,7 @@ namespace FileExercises
             this.id = id;
 
         }
-        
+        // making serialize function
         public void Serialize(string path)
         {
             try
@@ -60,6 +60,7 @@ namespace FileExercises
                 Console.WriteLine(e);
             }
         }
+        //making Deserialize function
         public void DeSerialize(string path)
         {
             try
@@ -67,16 +68,16 @@ namespace FileExercises
                 using (StreamReader reader = new StreamReader(path))
                 {
 
-
+                    
 
 
                     
-
 
 
                     name = reader.ReadLine();
                     email = reader.ReadLine();
                     
+                    // we dont talk about id 
                     
                     
 
@@ -90,7 +91,7 @@ namespace FileExercises
             }
 
         }
-
+        //making print function
         public void Print()
 
         {
