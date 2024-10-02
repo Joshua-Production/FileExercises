@@ -16,12 +16,14 @@ using System.Text.Json;
 
 namespace FileExercises
 {
+    
 
     struct Contact
     {
         public string name;
         public string email;
         public int id;
+
 
         public Contact(string name, string email, int id)
         {
@@ -30,7 +32,7 @@ namespace FileExercises
             this.id = id;
 
         }
-
+        
         public void Serialize(string path)
         {
             try
@@ -64,12 +66,22 @@ namespace FileExercises
             {
                 using (StreamReader reader = new StreamReader(path))
                 {
-                    string str;
-                    while ((str = reader.ReadLine()) != null)
-                    {
-                        Console.WriteLine(str);
-                        
-                    }
+
+
+
+
+                    
+
+
+
+                    name = reader.ReadLine();
+                    email = reader.ReadLine();
+                    
+                    
+                    
+
+
+
                 }
             }
             catch (Exception e)
@@ -81,8 +93,8 @@ namespace FileExercises
 
         public void Print()
 
-        { 
-            Console.WriteLine(name + " " + email + "  " + id);
+        {
+            Console.WriteLine(name + " | " + email + " | " + id);
         }
     }
     internal class SerializeIO
