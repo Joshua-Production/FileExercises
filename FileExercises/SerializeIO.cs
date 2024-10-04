@@ -69,17 +69,17 @@ namespace FileExercises
                 {
 
                     
+                    // reads from file
 
-
-                    
 
 
                     name = reader.ReadLine();
                     email = reader.ReadLine();
                     
-                    // we dont talk about id 
+                    if (int.TryParse(reader.ReadLine(),out id));
                     
-                    
+
+
 
 
 
